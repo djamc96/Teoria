@@ -14,17 +14,45 @@ public class Variaveis {
     private String txtArquivo;
     private String txtEntrada;
     private String txtSaida;
-    private String Alfabeto[];
+    private String AlfabetoEntrada[];
+    private String AlfabetoSaida[];
+    private String EstadosEntrada[];
+    private String EstadosSaida[];
+
+    public String[] getEstadosEntrada() {
+        return EstadosEntrada;
+    }
+
+    public void setEstadosEntrada(String[] EstadosEntrada) {
+        this.EstadosEntrada = EstadosEntrada;
+    }
+
+    public String[] getEstadosSaida() {
+        return EstadosSaida;
+    }
+
+    public void setEstadosSaida(String[] EstadosSaida) {
+        this.EstadosSaida = EstadosSaida;
+    }
     private String Estados[];
     private String Linhas[];
 
-    public String[] getAlfabeto() {
-        return Alfabeto;
+    public String[] getAlfabetoEntrada() {
+        return AlfabetoEntrada;
     }
 
-    public void setAlfabeto(String[] Alfabeto) {
-        this.Alfabeto = Alfabeto;
+    public void setAlfabetoEntrada(String[] AlfabetoEntrada) {
+        this.AlfabetoEntrada = AlfabetoEntrada;
     }
+
+    public String[] getAlfabetoSaida() {
+        return AlfabetoSaida;
+    }
+
+    public void setAlfabetoSaida(String[] AlfabetoSaida) {
+        this.AlfabetoSaida = AlfabetoSaida;
+    }
+
 
     public String[] getEstados() {
         return Estados;
