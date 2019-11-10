@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Teoria;
+package teoria2;
 
 /**
  *
  * @author anderson
  */
-public class Main {
+public class Teoria2 {
 
     /**
      * @param args the command line arguments
