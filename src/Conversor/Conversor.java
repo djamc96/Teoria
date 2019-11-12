@@ -56,19 +56,19 @@ public class Conversor {
     
     public void GerEstados(Variaveis var){
         String[] linhas =var.getLinhas();
-        String texto = linhas[0];
+        String texto = linhas[1];
         int ini = texto.indexOf('{');
         int fin = texto.indexOf('}');
         System.out.println(texto);
         texto = texto.substring(ini, fin);
-         String[] temp = texto.split(";");
+        String[] temp = texto.split(";");
         int tam = temp.length;
         int tamBin = log_base2(tam);
         String[] estEnt = null, estSai = null;
         estEnt[0] = "%";
-        estSai[0] = "a" + conv_dec_bin(0,tamBin);
+        estSai[0] = "q" + conv_dec_bin(0,tamBin);
         for(int i = 1; i < tam; i++){
-            estSai[i] = "a" + conv_dec_bin(i,tamBin);
+            estSai[i] = "q" + conv_dec_bin(i,tamBin);
             estEnt[i] = temp[i];
         }
         var.setEstadosEntrada(estEnt);
@@ -88,8 +88,22 @@ public class Conversor {
         var.setTxtSaida(temp);
     }
     
+    public void transicoes(Variaveis var){
+        String[] linhas =var.getLinhas();
+        int linha = 2;        
+        while(true){
+            if(linhas[linha].contains("{")) break;
+            linha++;
+        }
+        while(true){
+            if(linhas[linha].contains("}")) break;
+            String[] temp = linhas[linha].split(";");
+            String estatual  
+            
+        }
+    }
+    
     //Função que recebe um numero e retorna seu logaritmo na base 2
-   
     private int log_base2(int x){
         return(int) (Math.log(x) / Math.log(2));
     }
@@ -108,6 +122,15 @@ public class Conversor {
             bin = "0" + bin;
         }
         return bin;
+    }
+    
+    private int pos_entrada(String txt[], String comp){
+        int pos = -1;
+        int tam = txt.length;
+        for(int i = 0; i < tam; i++){
+            if(txt[i] == comp)  {pos = i;   break;}
+        } 
+        if
     }
     
 }
