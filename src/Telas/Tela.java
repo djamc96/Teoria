@@ -5,6 +5,8 @@
  */
 package Telas;
 
+import Conversor.Conversor;
+import Conversor.Variaveis;
 import Parser.Parser;
 import java.awt.CardLayout;
 import javax.swing.JFileChooser;
@@ -22,6 +24,8 @@ public class Tela extends javax.swing.JFrame {
         initComponents();
         
     }
+    Variaveis var = new Variaveis();
+    Conversor conv = new Conversor();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,6 +129,11 @@ public class Tela extends javax.swing.JFrame {
         );
 
         BtnSair.setBackground(java.awt.Color.blue);
+        BtnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnSairMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         jLabel5.setForeground(java.awt.Color.white);
@@ -315,6 +324,13 @@ public class Tela extends javax.swing.JFrame {
     private void BtnConvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConvMouseClicked
         Parser p = new Parser();
         String arq = p.carTxt(this.TxtCaminho.getText());
+        var.setTxtArquivo(arq);
+        conv.DivLinhas(var);
+        conv.GerAlfabeto(var);
+        conv.GerEstados(var);
+        conv.transicoes(var);
+        this.TxtEntrada.setText(var.getTxtEntrada());
+        this.TxtSaida.setText(var.getTxtSaida());
         CardLayout card = (CardLayout) Base.getLayout();
         card.show(Base,"Resultados");
     }//GEN-LAST:event_BtnConvMouseClicked
@@ -332,6 +348,10 @@ public class Tela extends javax.swing.JFrame {
         CardLayout card = (CardLayout) Base.getLayout();
         card.show(Base,"Inicio");
     }//GEN-LAST:event_BtnDenovoMouseClicked
+
+    private void BtnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSairMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_BtnSairMouseClicked
 
     /**
      * @param args the command line arguments

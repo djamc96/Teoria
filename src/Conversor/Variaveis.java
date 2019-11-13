@@ -11,7 +11,7 @@ package Conversor;
  */
 public class Variaveis {
     
-    private String txtArquivo;
+    private String txtArquivo = "";
     private String txtEntrada;
     private String txtSaida;
     private String AlfabetoEntrada[];

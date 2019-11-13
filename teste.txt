@@ -1,0 +1,21 @@
+{a;b;c;#}
+{inicio;est1;est2;est3;est4;est5;est6;fim}
+
+
+
+
+{
+inicio; ;est1;#;
+est1;a;est2; ;
+est2;a;est2;a;
+est2;b;est3;b;
+est3;b;est3;b;
+est3;c;est4; ;
+est4;c;est4;c;
+est4;#;est5;#;
+est5;a;est2; ;
+est5;b;est6; ;
+est5;#;fim; ;
+est6;b;est3;b;
+est6;c;est4; ;
+}
