@@ -346,7 +346,7 @@ public class Tela extends javax.swing.JFrame {
 
     private void BtnDenovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnDenovoMouseClicked
         CardLayout card = (CardLayout) Base.getLayout();
-        card.show(Base,"Inicio");
+        card.show(Base,"inicio");
     }//GEN-LAST:event_BtnDenovoMouseClicked
 
     private void BtnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSairMouseClicked
