@@ -22,7 +22,10 @@ public class Var {
     //private String AlfabetoSaida[];                                             //Alfabeto gerado apartir da entrada    
     private String EstadosEntrada[];                                            //Estados que contem no txt lido
     private ArrayList EstadosSaida = new ArrayList();
-
+    private ArrayList <maqEstados> maqE = new ArrayList();
+    private String matLei[][];
+    private String matEsc[][];
+    
     public ArrayList getAlfabetoSaida() {
         return AlfabetoSaida;
     }
@@ -33,6 +36,30 @@ public class Var {
 
     public ArrayList getEstadosSaida() {
         return EstadosSaida;
+    }
+
+    public String[][] getMatLei() {
+        return matLei;
+    }
+
+    public void setMatLei(String[][] matLei) {
+        this.matLei = matLei;
+    }
+
+    public String[][] getMatEsc() {
+        return matEsc;
+    }
+
+    public void setMatEsc(String[][] matEsc) {
+        this.matEsc = matEsc;
+    }
+
+    public ArrayList<maqEstados> getMaqE() {
+        return maqE;
+    }
+
+    public void setMaqE(ArrayList<maqEstados> maqE) {
+        this.maqE = maqE;
     }
 
     public void setEstadosSaida(ArrayList EstadosSaida) {

@@ -15,7 +15,8 @@ public class Passo1 {
 
     public Passo1(Var v) {
         DivLinhas(v);                                                           // Chama a função para quebrar o texto de entrada em linhas
-        
+        GerAlfabeto(v);
+        GerEstados(v);        
     }
       
     public void DivLinhas(Var v){
@@ -72,6 +73,28 @@ public class Passo1 {
         }
         temp += "\n";
         v.setTxtSaida(temp);
+    }
+    
+    public void GerEstados(Var v){
+        String[] estEnt = null;
+        ArrayList estSai = new ArrayList();
+        String[] linhas =v.getLinhas();
+        String texto = linhas[1];
+        int ini = texto.indexOf('{');
+        int fin = texto.indexOf('}');
+        System.out.println(texto);
+        texto = texto.substring(ini+1, fin);
+        String[] temp = texto.split(";");
+        int tam = temp.length;
+        int tamBin = log_base2(tam);
+        estEnt = new String[tam];
+        for(int i = 0; i < tam; i++){
+            estSai.add("a" + conv_dec_bin(i,tamBin));
+            estEnt[i] = temp[i];
+        }
+        v.setEstadosEntrada(estEnt);
+        v.setEstadosSaida(estSai);
+        impEstados(estEnt, estSai, v);
     }
     
     private void impEstados(String estEnt[],ArrayList estSai, Var v){
