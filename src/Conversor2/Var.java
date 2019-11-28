@@ -13,18 +13,55 @@ import java.util.ArrayList;
  */
 public class Var {
     
-    private String txtArquivo;                                                  //String com o texto lido do txt
+    private String                  txtArquivo;                                 //String com o texto lido do txt
     //private String txtEntrada;                                                  //
-    private String txtTransiçõoes;                                              //String que contem o passo a passo das transições de conversão
-    private String txtSaida;                                                    //String contendo o resultado final da conversão
-    private String AlfabetoEntrada[];                                           //Alfabeto que contem no txt lido
-    private ArrayList AlfabetoSaida = new ArrayList();
-    //private String AlfabetoSaida[];                                             //Alfabeto gerado apartir da entrada    
-    private String EstadosEntrada[];                                            //Estados que contem no txt lido
-    private ArrayList EstadosSaida = new ArrayList();
-    private ArrayList <maqEstados> maqE = new ArrayList();
-    private String matLei[][];
-    private String matEsc[][];
+    private String                  txtTransiçõoes;                             //String que contem o passo a passo das transições de conversão
+    private String                  txtSaida;                                   //String contendo o resultado final da conversão
+    private String                  AlfabetoEntrada[];                          //Alfabeto que contem no txt lido
+    private ArrayList               AlfabetoSaida = new ArrayList();
+    //private String AlfabetoSaida[];                                           //Alfabeto gerado apartir da entrada    
+    private String                  EstadosEntrada[];                           //Estados que contem no txt lido
+    private ArrayList               EstadosSaida = new ArrayList();
+    private ArrayList <maqEstados>  maqE = new ArrayList();
+    private String                  matLei[][];
+    private String                  matEsc[][];
+    private int                     contEstAtual[];
+    private int                     contProxEst[];
+    private int                     estInicial = -1;
+    private ArrayList               estFinal = new ArrayList();
+
+    public int[] getContEstAtual() {
+        return contEstAtual;
+    }
+
+    public int getEstInicial() {
+        return estInicial;
+    }
+
+    public void setEstInicial(int estInicial) {
+        this.estInicial = estInicial;
+    }
+
+    public ArrayList getEstFinal() {
+        return estFinal;
+    }
+
+    public void setEstFinal(ArrayList estFinal) {
+        this.estFinal = estFinal;
+    }
+
+    public void setContEstAtual(int[] contEstAtual) {
+        this.contEstAtual = contEstAtual;
+    }
+
+    public int[] getContProxEst() {
+        return contProxEst;
+    }
+
+    public void setContProxEst(int[] contProxEst) {
+        this.contProxEst = contProxEst;
+    }
+    
     
     public ArrayList getAlfabetoSaida() {
         return AlfabetoSaida;

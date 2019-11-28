@@ -50,7 +50,8 @@ public class Passo2 {
             temp = linhas[linha].split(";");
             posEstAtu = pos_entrada(estEnt, temp[0]);
             posProxEst = pos_entrada(estEnt, temp[2]);
-            matLei[posEstAtu][posProxEst] = temp[1];
+            if(matLei[posEstAtu][posProxEst] == "")     matLei[posEstAtu][posProxEst]  = temp[1] + ";";
+            else                                        matLei[posEstAtu][posProxEst]  += temp[1] + ";";
             matEsc[posEstAtu][posProxEst] = temp[3];
         }
         v.setMatEsc(matEsc);
