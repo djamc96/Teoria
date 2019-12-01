@@ -22,7 +22,7 @@ public class Passo4 {
     
     private void simpEst(Var v){
         ArrayList <maqEstados> maqE = v.getMaqE();
-        ArrayList maqESimp = v.getMaqE();
+        ArrayList <maqEstados> maqESimp = v.getMaqE();
         String   [] estEnt = v.getEstadosEntrada();
         String   [] alfEnt = v.getAlfabetoEntrada();
         int contEstAtual[] = v.getContEstAtual();
@@ -30,6 +30,7 @@ public class Passo4 {
         ArrayList estF = v.getEstFinal();
         
         maqEstados trans, temp = null;
+        System.out.println("\n1 simplicação\n");
         System.out.println(maqE.size());
         impM(maqE);
         for(int i = 0; i < maqE.size(); i++){
@@ -46,9 +47,11 @@ public class Passo4 {
             maqE.add(trans);
         }
         
+        System.out.println("\n2 simplicação\n");
+        System.out.println(maqE.size());
+        impM(maqE);
         for(int i = 0; i < maqE.size(); i++){
-            System.out.println(maqE.size());
-            trans = maqE.remove(i);
+            trans = maqE.get(i);
             System.out.println(trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getEscrita() + ';' + trans.getProxEst() + ";" + trans.getMovimento());
             if(estFinal(estF, estEnt, trans.getProxEst())){
                 trans.setEscrita(trans.getLeitura());
@@ -59,48 +62,58 @@ public class Passo4 {
             }else{
                 trans.setMovimento('d');
             }
-            System.out.println(trans.getLeitura() + "\n" + trans.getEstAtual() + "\n" + trans.getEscrita() + '\n' + trans.getProxEst() + "\n" + trans.getMovimento());
-            maqE.add(trans);
+            System.out.println(trans.getLeitura() + "  " + trans.getEstAtual() + "  " + trans.getEscrita() + "  " + trans.getProxEst() + "  " + trans.getMovimento());
+            maqESimp.add(trans);
         }
-        impM(maqE);
-        maqESimp.clear();
-        for(int i = 0; i < maqE.size(); i++){
-            trans = maqE.get(i);
-            System.out.println(trans.getLeitura() + "\n" + trans.getEstAtual() + "\n" + trans.getEscrita() + '\n' + trans.getProxEst() + "\n" + trans.getMovimento());
-            if(trans.getLeitura().equals("#") && trans.getEscrita().equals("#") && estFinal(estF, estEnt, trans.getProxEst())){
-                trans.setEscrita("%");
-                trans.setLeitura("%");
-                maqESimp.add(trans);
-                System.out.println("1 " +trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getEscrita() + ';' + trans.getProxEst() + ";" + trans.getMovimento());
-            } else if(trans.getLeitura().equals("#") && trans.getEscrita().equals("#") && (!estFinal(estF, estEnt, trans.getProxEst()))){
-                temp.setEstAtual(trans.getEstAtual());
-                temp.setProxEst("tmp");
-                temp.setEscrita("%");
-                temp.setLeitura("%");
-                temp.setMovimento('e');
-                maqESimp.add(temp);
-                for(int j = 0; j < alfEnt.length; j++){
-                    if(alfEnt[j] != "#"){
-                        temp.setEstAtual("tmp");
-                        temp.setProxEst("tmp");
-                        temp.setEscrita(alfEnt[j]);
-                        temp.setLeitura(alfEnt[j]);
-                        temp.setMovimento('e');
-                        maqE.add(temp);
+        
+        
+        System.out.println("\n3 simplicação\n");
+        maqE.clear();
+        System.out.println(maqE.size());
+        impM(maqESimp);
+        int tam = maqESimp.size();
+        System.out.println(tam);
+        for(int i = 0; i < tam; i++){
+            System.out.println(i + "\n");
+            trans = (maqEstados) maqESimp.get(i);
+            System.out.println(trans.getLeitura() + "  " + trans.getEstAtual() + "  " + trans.getEscrita() + "  " + trans.getProxEst() + "  " + trans.getMovimento());
+            if(trans.getLeitura().equals("#") && trans.getEscrita().equals("#")){
+                System.out.println("leitura eescrita = #");
+                if(estFinal(estF, estEnt, trans.getProxEst())){
+                    trans.setEscrita("%");
+                    trans.setLeitura("%");
+                    maqE.add(trans);
+                    System.out.println("1 " +trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getEscrita() + ';' + trans.getProxEst() + ";" + trans.getMovimento());
+                }else{
+                    temp.setEstAtual(trans.getEstAtual());
+                    temp.setProxEst("tmp");
+                    temp.setEscrita("%");
+                    temp.setLeitura("%");
+                    temp.setMovimento('e');
+                    maqE.add(temp);
+                    for(int j = 0; j < alfEnt.length; j++){
+                        if(alfEnt[j] != "#"){
+                            temp.setEstAtual("tmp");
+                            temp.setProxEst("tmp");
+                            temp.setEscrita(alfEnt[j]);
+                            temp.setLeitura(alfEnt[j]);
+                            temp.setMovimento('e');
+                            maqE.add(temp);
+                        }
                     }
+                    temp.setEstAtual("tmp");
+                    temp.setProxEst(trans.getProxEst());
+                    temp.setEscrita("%");
+                    temp.setLeitura("%");
+                    temp.setMovimento('d');
+                    maqE.add(temp);
                 }
-                temp.setEstAtual("tmp");
-                temp.setProxEst(trans.getProxEst());
-                temp.setEscrita("%");
-                temp.setLeitura("%");
-                temp.setMovimento('d');
-                maqESimp.add(temp);
-            }else{
+            } else  {
                 System.out.println(trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getEscrita() + ';' + trans.getProxEst() + ";" + trans.getMovimento());
-                maqESimp.add(trans);
+                maqE.add(trans);
             }
         }
-        impM(maqESimp);
+        impM(maqE);
         v.setMaqE(maqE);
     }
  

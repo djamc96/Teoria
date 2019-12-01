@@ -31,7 +31,7 @@ public class Passo3 {
                 if(matLei[i][j] != ""){
                     String[] temp = matLei[i][j].split(";");
                     for(int c = 0; c < temp.length; c++){
-                        maqEstados mq = new maqEstados(estEnt[i], temp[c], estEnt[j], matEsc[i][j],' ');
+                        if(matEsc[i][j] != " ") maqEstados mq = new maqEstados(estEnt[i], temp[c], estEnt[j], matEsc[i][j],' ');
                         maqE.add(mq);
                     }
                 }

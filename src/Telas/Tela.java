@@ -206,7 +206,7 @@ public class Tela extends javax.swing.JFrame {
         Base.add(Resultado, "Resultados");
         Resultado.getAccessibleContext().setAccessibleDescription("");
 
-        TxtCaminho.setText("/home/maiara/NetBeansProjects/Teoria/teste.txt");
+        TxtCaminho.setText("/home/anderson/NetBeansProjects/Teoria/teste.txt");
         TxtCaminho.setEnabled(false);
         TxtCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

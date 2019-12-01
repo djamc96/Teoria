@@ -331,7 +331,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="TxtCaminho">
               <Properties>
-                <Property name="text" type="java.lang.String" value="/home/maiara/NetBeansProjects/Teoria/teste.txt"/>
+                <Property name="text" type="java.lang.String" value="/home/anderson/NetBeansProjects/Teoria/teste.txt"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
