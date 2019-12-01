@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class Passo1 {
 
     public Passo1(Var v) {
+        System.out.println("passo 1\n");
         DivLinhas(v);                                                           // Chama a função para quebrar o texto de entrada em linhas
         GerAlfabeto(v);
-        GerEstados(v);        
-    }
+        GerEstados(v);
+        Passo2 p2 = new Passo2(v);
+    } 
       
     public void DivLinhas(Var v){
         try{
@@ -29,6 +31,7 @@ public class Passo1 {
             for(String l : linhas){
                 transições += l + "\n";
             }
+            transições += "----------------------------------------\n";
             v.setTxtSaida("");
             v.setTxtTransiçõoes(transições);
         }catch(Exception E){
@@ -64,7 +67,7 @@ public class Passo1 {
     }
     
     private void impAlfabeto(String alfEnt[],ArrayList alfSai, Var v){
-        String temp = v.getTxtSaida();
+        String temp = v.getTxtTransiçõoes();
         temp += "Alfabeto\n---------------------------------------\n";
         String ent[] = v.getAlfabetoEntrada();
         ArrayList sai = v.getAlfabetoSaida();
@@ -72,7 +75,7 @@ public class Passo1 {
             temp += ent[i] + "          -->        " + sai.get(i) + "\n";
         }
         temp += "\n";
-        v.setTxtSaida(temp);
+        v.setTxtTransiçõoes(temp);
     }
     
     public void GerEstados(Var v){
@@ -98,7 +101,7 @@ public class Passo1 {
     }
     
     private void impEstados(String estEnt[],ArrayList estSai, Var v){
-        String temp = v.getTxtSaida();
+        String temp = v.getTxtTransiçõoes();
         temp += "Estados\n---------------------------------------\n";
         String ent[] = v.getEstadosEntrada();
         ArrayList sai = v.getEstadosSaida();
@@ -106,7 +109,7 @@ public class Passo1 {
             temp += ent[i] + "          -->        " + sai.get(i) + "\n";
         }
         temp += "\n";
-        v.setTxtSaida(temp);
+        v.setTxtTransiçõoes(temp);
     }
     
     //Funções auxiliares
@@ -134,4 +137,5 @@ public class Passo1 {
         }
         return bin;
     }
+
 }

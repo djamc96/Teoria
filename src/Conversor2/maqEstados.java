@@ -17,7 +17,7 @@ public class maqEstados {
     private String  escrita;
     private char    movimento;
 
-    public maqEstados(String estAtual, String proxEst, String leitura, String escrita, char movimento) {
+    public maqEstados(String estAtual, String leitura, String proxEst, String escrita, char movimento) {
         this.estAtual = estAtual;
         this.proxEst = proxEst;
         this.leitura = leitura;

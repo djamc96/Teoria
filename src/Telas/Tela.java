@@ -7,6 +7,8 @@ package Telas;
 
 import Conversor.Conversor;
 import Conversor.Variaveis;
+import Conversor2.Passo1;
+import Conversor2.Var;
 import Parser.Parser;
 import java.awt.CardLayout;
 import javax.swing.JFileChooser;
@@ -24,8 +26,9 @@ public class Tela extends javax.swing.JFrame {
         initComponents();
         
     }
-    Variaveis var = new Variaveis();
-    Conversor conv = new Conversor();
+    //Variaveis var = new Variaveis();
+    //Conversor conv = new Conversor();
+    Var v = new Var();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +51,8 @@ public class Tela extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         BtnSair = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TxtTransicoes = new javax.swing.JTextArea();
         CarArq = new javax.swing.JPanel();
         TxtCaminho = new javax.swing.JTextField();
         BtnCar = new javax.swing.JPanel();
@@ -157,6 +162,10 @@ public class Tela extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        TxtTransicoes.setColumns(20);
+        TxtTransicoes.setRows(5);
+        jScrollPane3.setViewportView(TxtTransicoes);
+
         javax.swing.GroupLayout ResultadoLayout = new javax.swing.GroupLayout(Resultado);
         Resultado.setLayout(ResultadoLayout);
         ResultadoLayout.setHorizontalGroup(
@@ -165,14 +174,16 @@ public class Tela extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ResultadoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ResultadoLayout.createSequentialGroup()
                         .addComponent(BtnDenovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addGap(119, 119, 119)
                         .addComponent(BtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -181,9 +192,10 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(ResultadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnDenovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +206,13 @@ public class Tela extends javax.swing.JFrame {
         Base.add(Resultado, "Resultados");
         Resultado.getAccessibleContext().setAccessibleDescription("");
 
-        TxtCaminho.setEditable(false);
+        TxtCaminho.setText("/home/maiara/NetBeansProjects/Teoria/teste.txt");
         TxtCaminho.setEnabled(false);
+        TxtCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtCaminhoActionPerformed(evt);
+            }
+        });
 
         BtnCar.setBackground(java.awt.Color.blue);
         BtnCar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -258,33 +275,29 @@ public class Tela extends javax.swing.JFrame {
         CarArqLayout.setHorizontalGroup(
             CarArqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CarArqLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(334, 334, 334)
+                .addComponent(BtnCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarArqLayout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(CarArqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarArqLayout.createSequentialGroup()
-                        .addComponent(TxtCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TxtCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarArqLayout.createSequentialGroup()
-                        .addComponent(BtnCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(261, 261, 261))))
-            .addGroup(CarArqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarArqLayout.createSequentialGroup()
-                    .addContainerGap(617, Short.MAX_VALUE)
-                    .addComponent(BtnConv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(25, 25, 25)))
+                        .addComponent(BtnConv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         CarArqLayout.setVerticalGroup(
             CarArqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CarArqLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(84, 84, 84)
                 .addComponent(BtnCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(86, 86, 86)
                 .addComponent(TxtCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CarArqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarArqLayout.createSequentialGroup()
-                    .addContainerGap(431, Short.MAX_VALUE)
-                    .addComponent(BtnConv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(15, 15, 15)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(BtnConv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         Base.add(CarArq, "inicio");
@@ -293,7 +306,7 @@ public class Tela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 1009, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -324,15 +337,16 @@ public class Tela extends javax.swing.JFrame {
     private void BtnConvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnConvMouseClicked
         Parser p = new Parser();
         String arq = p.carTxt(this.TxtCaminho.getText());
-        var.setTxtArquivo(arq);
-        conv.DivLinhas(var);
-        conv.GerAlfabeto(var);
-        conv.GerEstados(var);
-        conv.transicoes(var);
-        this.TxtEntrada.setText(var.getTxtEntrada());
-        this.TxtSaida.setText(var.getTxtSaida());
+        v.setTxtArquivo(arq);
         CardLayout card = (CardLayout) Base.getLayout();
         card.show(Base,"Resultados");
+        Passo1 p1 = new Passo1(v);
+        //conv.DivLinhas(var);
+        //conv.GerAlfabeto(var);
+        //conv.GerEstados(var);
+        //conv.transicoes(var);
+        this.TxtEntrada.setText(v.getTxtArquivo());
+        this.TxtSaida.setText(v.getTxtSaida());
     }//GEN-LAST:event_BtnConvMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -352,6 +366,10 @@ public class Tela extends javax.swing.JFrame {
     private void BtnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_BtnSairMouseClicked
+
+    private void TxtCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtCaminhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,6 +419,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JTextField TxtCaminho;
     private javax.swing.JTextArea TxtEntrada;
     private javax.swing.JTextArea TxtSaida;
+    private javax.swing.JTextArea TxtTransicoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -408,5 +427,6 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

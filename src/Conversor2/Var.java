@@ -153,5 +153,12 @@ public class Var {
         this.EstadosEntrada = EstadosEntrada;
     }
     
-    
+    public void impMatriz(String m[][]){
+        for(int i = 0; i < m.length; i++){
+            for(int j = 0; j < m[0].length; j++){
+                System.out.print(m[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+    }
 }

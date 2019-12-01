@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class Passo3 {
     
     public Passo3(Var v) {
+        System.out.println("passo 3\n");
         this.matrizTransEnt(v);
         this.contEst(v);
         this.defEst(v);
+        Passo4 p4 = new Passo4(v);
     }
     
     public void matrizTransEnt(Var v){
@@ -35,6 +37,8 @@ public class Passo3 {
                 }
             }
         }
+        v.impMatriz(matEsc);
+        v.impMatriz(matLei);
         v.setMaqE(maqE);
     }
     
