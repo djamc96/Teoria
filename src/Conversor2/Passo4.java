@@ -40,22 +40,37 @@ public class Passo4 {
         tam = maqE.size();
         for(int i = 0; i < tam; i++){
             trans = maqE.get(i);
-            if(contEstAtual[f.pos_entrada(estEnt, trans.getProxEst())] == 1){
-                temp = f.pesqMaqE(maqE, trans.getProxEst());
-                //System.out.println(temp.getEscrita() + ';' + temp.getLeitura() + ";" + temp.getEstAtual() + ";" + temp.getProxEst());
-                if(temp.getLeitura().equals("%")){
-                    trans.setProxEst(temp.getProxEst());
-                    trans.setEscrita(temp.getEscrita());
-                }
-            }
-            //System.out.println(trans.getEscrita() + ';' + trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getProxEst());
+            if(trans.getLeitura().equals(" "))    trans.setLeitura("%");
+            if(trans.getEscrita().equals(" "))    trans.setEscrita("%");
             maqETemp.add(trans);
+        }
+        maqE.clear();
+        maqE.addAll(maqETemp);
+        maqETemp.clear();
+        tam = maqE.size();
+        temp = null;
+        for(int i = 0; i < tam; i++){
+            if((trans = maqE.get(i)) != temp){
+                //trans= maqE.get(i);
+                if(contEstAtual[f.pos_entrada(estEnt, trans.getProxEst())] == 1){
+                    temp = f.pesqMaqE(maqE, trans.getProxEst());
+                    //boolean remove = maqE.remove(temp);
+                    System.out.println(temp.getEscrita() + ';' + temp.getLeitura() + ";" + temp.getEstAtual() + ";" + temp.getProxEst());
+                    if(temp.getLeitura().equals("%")){
+                        trans.setProxEst(temp.getProxEst());
+                        trans.setEscrita(temp.getEscrita());
+                    }
+                }
+                System.out.println(trans.getEscrita() + ';' + trans.getLeitura() + ";" + trans.getEstAtual() + ";" + trans.getProxEst());
+                maqETemp.add(trans);
+            }
         }
         
         maqE.clear();
         maqE.addAll(maqETemp);
+        maqETemp.clear();
         
-        f.impM(maqETemp,v);
+        f.impM(maqE,v);
         txt += "\n2 simplicação\n";
         v.setTxtTransiçõoes(txt);
         maqETemp.clear();
@@ -111,12 +126,30 @@ public class Passo4 {
         tam = maqE.size();
         for(int i = 0; i < tam; i++){
             trans = maqE.get(i);
-            if(trans.getLeitura().equals(" ") || trans.getLeitura().equals("#"))    trans.setLeitura("%");
-            if(trans.getEscrita().equals(" ") || trans.getEscrita().equals("#"))    trans.setEscrita("%");
+            if(trans.getLeitura().equals("#"))    trans.setLeitura("%");
+            if(trans.getEscrita().equals("#"))    trans.setEscrita("%");
             maqETemp.add(trans);
         }
         maqE.clear();
         maqE.addAll(maqETemp);
+        maqETemp.clear();
+        tam = maqE.size();
+        for(int i = 0; i < tam; i++){
+            trans = maqE.get(i);
+            if(trans.getEstAtual().equals(estEnt[v.getEstInicial()]) || f.estFinal(estFinal, estEnt, trans.getProxEst()))
+                maqETemp.add(trans);
+            else{
+                if(!trans.getLeitura().equals("%")){
+                    maqETemp.add(trans);
+                }
+                else{
+                    if(trans.getEstAtual().equals("tmp") || trans.getProxEst().equals("tmp"))   maqETemp.add(trans);
+                }
+            }
+        }
+        maqE.clear();
+        maqE.addAll(maqETemp);
+        maqETemp.clear();
         f.impM(maqE,v);
         v.setMaqE(maqE);
     } 
@@ -145,15 +178,15 @@ public class Passo4 {
             temp = new maqEstados("tmp", "%", proEst, "%",'d');
             maqE.add(temp);
             
-            //Adicionando novo estado;
-            String[] estE = new String[estEnt.length + 1];
+            /*/Adicionando novo estado;
+            //String[] estE = new String[estEnt.length + 1];
             for(int i = 0; i < estEnt.length; i++){
                 estE[i] = estEnt[i];
             }
             estE[estEnt.length] = "tmp";
             //EstadosSaida.add("q" + v.conv_dec_bin(tam, v.log_base2(tam)));
             v.setEstadosEntrada(estE);
-            //v.setEstadosSaida(EstadosSaida);
+            //v.setEstadosSaida(EstadosSaida);*/
     }
     
 }

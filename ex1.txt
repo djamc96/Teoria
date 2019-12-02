@@ -1,0 +1,30 @@
+{#;a;b;c}
+{inicio;e1;e2;e3;e4;e5;l1;l2;l3;l4;l5;aceita;rejeita}
+{
+inicio; ;e1; ;
+e1; ;l1; ;
+l1;#;aceita; ;
+l1;a;l2; ;
+l1;b;rejeita; ;
+l1;c;rejeita; ;
+l2;a;e2; ;
+l2;b;l3; ;
+l2;c;rejeita; ;
+l2;#;rejeita; ;
+e2; ;l2;a;
+l3;a;rejeita; ;
+l3;b;e3; ;
+l3;c;l4; ;
+l3;#;rejeita; ;
+e3; ;l3;b;
+l4;a;rejeita; ;
+l4;b;rejeita; ;
+l4;c;e4; ;
+l4;#;e5; ;
+e4; ;l4;c;
+e5; ;l5;#;
+l5;a;l2; ;
+l5;b;rejeita; ;
+l5;c;rejeita; ;
+l5;#;aceita; ;
+}

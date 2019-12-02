@@ -51,17 +51,22 @@ public class Passo1 {
         texto = texto.substring(ini + 1, fin);
         String[] temp = texto.split(";");
         int tam = temp.length;
+        //System.out.println(tam);
         tam = tam + 2;
         int tamBin = f.log_base2(tam);
+        int pos = 2;
         alfEnt = new String[tam];
         alfEnt[0] = "%";
         alfSai.add("a" + f.conv_dec_bin(0,tamBin));
         alfEnt[1] = ".";
         alfSai.add("a" + f.conv_dec_bin(1,tamBin));
         for(int i = 2; i < tam; i++){
+            System.out.println(temp[i-2]);
             if(!temp[i-2].equals("#")){
                 alfSai.add("a" + f.conv_dec_bin(i,tamBin));
-                alfEnt[i] = temp[i-2];
+                alfEnt[pos] = temp[i-2];
+                System.out.println((String)alfSai.get(pos) + "   " + alfEnt[pos]);
+                pos++;
             }
         }
         alfEnt[tam - 1] = "#";
@@ -75,7 +80,8 @@ public class Passo1 {
         temp += "Alfabeto\n---------------------------------------\n";
         String ent[] = v.getAlfabetoEntrada();
         ArrayList sai = v.getAlfabetoSaida();
-        for(int i = 0; i < ent.length; i++){
+        for(int i = 0; i < ent.length - 1; i++){
+            System.out.println(ent[i] + "          -->        " + sai.get(i));
             if(!ent[i].equals("#"))      temp += ent[i] + "          -->        " + sai.get(i) + "\n";
         }
         temp += "#          -->         \n";
@@ -84,7 +90,7 @@ public class Passo1 {
     }
     
     public void GetEstados(Var v){
-        String[] estEnt = null;
+        String[] estEnt;
         //ArrayList estSai = new ArrayList();
         String[] linhas =v.getLinhas();
         String texto = linhas[1];
@@ -94,12 +100,13 @@ public class Passo1 {
         texto = texto.substring(ini+1, fin);
         String[] temp = texto.split(";");
         int tam = temp.length;
+        estEnt = new String[tam + 1];
         //int tamBin = log_base2(tam);
-        estEnt = new String[tam];
         for(int i = 0; i < tam; i++){
             //estSai.add("q" + conv_dec_bin(i,tamBin));
             estEnt[i] = temp[i];
         }
+        estEnt[tam] = "tmp";
         v.setEstadosEntrada(estEnt);
         //v.setEstadosSaida(estSai);
         //impEstados(estEnt, estSai, v);

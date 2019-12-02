@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Passo5 {
 
     public Passo5(Var v) {
+        System.out.println("Passo 5");
         convSaida(v);
         gerSaida(v);
     }
@@ -32,7 +33,7 @@ public class Passo5 {
         maqETemp.clear();
         for(int i = 0; i < tam; i++){
             tmp = maqE.get(i);
-            //System.out.println(tmp.getLeitura() + ";" + tmp.getEstAtual() + ";" + tmp.getEscrita() + ';' + tmp.getProxEst() + ";" + tmp.getMovimento());
+            System.out.println(tmp.getLeitura() + ";" + tmp.getEstAtual() + ";" + tmp.getEscrita() + ';' + tmp.getProxEst() + ";" + tmp.getMovimento());
             tmp.setEstAtual((String) estSaida.get(f.pos_entrada(estEnt, tmp.getEstAtual())));
             tmp.setLeitura((String) alfSaida.get(f.pos_entrada(alfEnt, tmp.getLeitura())));
             tmp.setProxEst((String) estSaida.get(f.pos_entrada(estEnt, tmp.getProxEst())));
