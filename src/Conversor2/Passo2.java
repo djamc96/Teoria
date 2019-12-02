@@ -25,7 +25,7 @@ public class Passo2 {
         String   [] estEnt = v.getEstadosEntrada();
         String [][] matLei = new String [estEnt.length][estEnt.length];
         String [][] matEsc = new String [estEnt.length][estEnt.length];
-        System.out.println(estEnt.length);
+        //System.out.println(estEnt.length);
         for(int i = 0; i < estEnt.length; i++){
             for(int j = 0; j < estEnt.length; j++){
                 matLei[i][j] = "";
@@ -42,46 +42,36 @@ public class Passo2 {
         String   [] temp;
         String [][] matLei = v.getMatLei();
         String [][] matEsc = v.getMatEsc();
-        int linha = 2, posEstAtu = 0, posProxEst = 0;   
+        int linha = 2, posEstAtu, posProxEst; 
+        String txt = "";
+        posEstAtu = posProxEst = 0;
+        
+        Funcoes f = new Funcoes();
         while(true){
-            if(linhas[linha].contains("{")) break;
+            if(linhas[linha].contains("{"))     break;
             linha++;
         }
         linha++;
         while(true){
-            if(linhas[linha].contains("}")) break;
+            if(linhas[linha].contains("}"))     break;
             temp = linhas[linha].split(";");
-            posEstAtu = pos_entrada(estEnt, temp[0]);
-            posProxEst = pos_entrada(estEnt, temp[2]);
+            posEstAtu   = f.pos_entrada(estEnt, temp[0]);
+            posProxEst  = f.pos_entrada(estEnt, temp[2]);
             if(matLei[posEstAtu][posProxEst] == "")     matLei[posEstAtu][posProxEst]  = temp[1] + ";";
             else                                        matLei[posEstAtu][posProxEst]  += temp[1] + ";";
-            matEsc[posEstAtu][posProxEst] = temp[3];
+            if(!temp[3].equals(" "))  matEsc[posEstAtu][posProxEst] = temp[3];
             linha++;
         }
-        impMatriz(matLei);
-        impMatriz(matEsc);
+        
+        txt += "Matriz de Leitura\n";
+        v.setTxtTransiçõoes(txt);
+        f.impMatriz(matLei, v);
+        txt = v.getTxtTransiçõoes();
+        txt += "Matriz de Escrita\n";
+        v.setTxtTransiçõoes(txt);
+        f.impMatriz(matEsc, v);
+        
         v.setMatEsc(matEsc);
         v.setMatLei(matLei);
-    }
-    
-    private int pos_entrada(String txt[], String comp){
-        int pos = -1;
-        int tam = txt.length;
-        int i;
-        for(i = 0; i < tam; i++){
-            if(comp.equals(txt[i]))  {pos = i;   break;}
-        } 
-        
-        if(pos < 0)     {JOptionPane.showMessageDialog(null, "Arquivo de entrada com erro de sintaxe"); System.exit(0);}
-        return pos;
-    }
-    
-    public void impMatriz(String m[][]){
-        for(int i = 0; i < m.length; i++){
-            for(int j = 0; j < m[0].length; j++){
-                System.out.print(m[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
     }
 }

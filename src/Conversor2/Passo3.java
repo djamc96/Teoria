@@ -22,23 +22,27 @@ public class Passo3 {
     }
     
     public void matrizTransEnt(Var v){
+        Funcoes          f = new Funcoes();
         String   [] estEnt = v.getEstadosEntrada();
         String [][] matLei = v.getMatLei();
         String [][] matEsc = v.getMatEsc();
+        String         txt = v.getTxtTransiçõoes();
         ArrayList <maqEstados> maqE = new ArrayList();
+        
         for(int i = 0; i < matLei[0].length; i++){
             for(int j = 0; j < matLei[0].length; j++){
                 if(matLei[i][j] != ""){
                     String[] temp = matLei[i][j].split(";");
                     for(int c = 0; c < temp.length; c++){
-                        if(matEsc[i][j] != " ") maqEstados mq = new maqEstados(estEnt[i], temp[c], estEnt[j], matEsc[i][j],' ');
+                        maqEstados mq = new maqEstados(estEnt[i], temp[c], estEnt[j], matEsc[i][j],' ');
                         maqE.add(mq);
                     }
                 }
             }
         }
-        v.impMatriz(matEsc);
-        v.impMatriz(matLei);
+        txt += "Transições geradas apartir das matrizes\n";
+        v.setTxtTransiçõoes(txt);
+        f.impM(maqE, v);
         v.setMaqE(maqE);
     }
     
@@ -48,6 +52,9 @@ public class Passo3 {
         String [][] matLei = v.getMatLei();
         int      [] contEstAtual = new int[estEnt.length];
         int      [] contProxEst  = new int[estEnt.length];
+        String txt = v.getTxtTransiçõoes();
+        
+        txt += "Contagem de aparições nos estados\nEstado Atual            Proximo Estado\n";
         for(int i = 0; i < matLei[0].length; i++){
             contEstAtual[i] = contProxEst[i] = 0;
         }
@@ -55,9 +62,15 @@ public class Passo3 {
             for(int j = 0; j < matLei[0].length; j++){
                 if(matLei[i][j] != ""){
                     contEstAtual[i]++;
+                    contProxEst[j]++;
                 }
             }
         }
+        for(int i = 0; i < matLei[0].length; i++){
+            txt +=  estEnt[i] + " = " + contEstAtual[i] + "      "+
+                    estEnt[i] + " = " + contProxEst[i] + "\n";
+        }
+        v.setTxtTransiçõoes(txt);
         v.setContEstAtual(contEstAtual);
         v.setContProxEst(contProxEst);
     }
@@ -67,10 +80,20 @@ public class Passo3 {
         int      [] contProxEst  = v.getContProxEst();
         int           estInicial = -1;
         ArrayList estFinal = new ArrayList();
+        String   [] estEnt = v.getEstadosEntrada();
+        String txt = v.getTxtTransiçõoes();
+        
         for(int i = 0; i < contEstAtual.length; i++){
             if(contEstAtual[i] == 1 && contProxEst[i] == 0) estInicial = i;
             if(contEstAtual[i] == 0)                        estFinal.add(i);
         }
+        
+        txt += "Estado Inicial\n" + estEnt[estInicial] + "\n";
+        txt += "Estados Finais\n";
+        for(int i = 0; i < estFinal.size(); i++){
+            txt += estEnt[(int) estFinal.get(i)] + "\n";
+        }
+        v.setTxtTransiçõoes(txt);
         v.setEstInicial(estInicial);
         v.setEstFinal(estFinal);
     }

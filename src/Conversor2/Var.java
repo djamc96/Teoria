@@ -6,6 +6,7 @@
 package Conversor2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Var {
     private ArrayList               AlfabetoSaida = new ArrayList();
     //private String AlfabetoSaida[];                                           //Alfabeto gerado apartir da entrada    
     private String                  EstadosEntrada[];                           //Estados que contem no txt lido
-    private ArrayList               EstadosSaida = new ArrayList();
+    private ArrayList <String>      EstadosSaida = new ArrayList();
     private ArrayList <maqEstados>  maqE = new ArrayList();
     private String                  matLei[][];
     private String                  matEsc[][];
@@ -62,18 +63,6 @@ public class Var {
         this.contProxEst = contProxEst;
     }
     
-    
-    public ArrayList getAlfabetoSaida() {
-        return AlfabetoSaida;
-    }
-
-    public void setAlfabetoSaida(ArrayList AlfabetoSaida) {
-        this.AlfabetoSaida = AlfabetoSaida;
-    }
-
-    public ArrayList getEstadosSaida() {
-        return EstadosSaida;
-    }
 
     public String[][] getMatLei() {
         return matLei;
@@ -99,7 +88,19 @@ public class Var {
         this.maqE = maqE;
     }
 
-    public void setEstadosSaida(ArrayList EstadosSaida) {
+    public ArrayList getAlfabetoSaida() {
+        return AlfabetoSaida;
+    }
+
+    public void setAlfabetoSaida(ArrayList AlfabetoSaida) {
+        this.AlfabetoSaida = AlfabetoSaida;
+    }
+
+    public ArrayList<String> getEstadosSaida() {
+        return EstadosSaida;
+    }
+
+    public void setEstadosSaida(ArrayList<String> EstadosSaida) {
         this.EstadosSaida = EstadosSaida;
     }
     
@@ -151,14 +152,6 @@ public class Var {
 
     public void setEstadosEntrada(String[] EstadosEntrada) {
         this.EstadosEntrada = EstadosEntrada;
-    }
+    }    
     
-    public void impMatriz(String m[][]){
-        for(int i = 0; i < m.length; i++){
-            for(int j = 0; j < m[0].length; j++){
-                System.out.print(m[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
-    }
 }

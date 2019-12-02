@@ -17,7 +17,7 @@ public class Passo1 {
         System.out.println("passo 1\n");
         DivLinhas(v);                                                           // Chama a função para quebrar o texto de entrada em linhas
         GerAlfabeto(v);
-        GerEstados(v);
+        GetEstados(v);
         Passo2 p2 = new Passo2(v);
     } 
       
@@ -40,6 +40,7 @@ public class Passo1 {
     }
     
     public void GerAlfabeto(Var v){
+        Funcoes f = new Funcoes();
         String[] alfEnt;
         ArrayList alfSai = new ArrayList();
         String[] linhas =v.getLinhas();
@@ -51,16 +52,19 @@ public class Passo1 {
         String[] temp = texto.split(";");
         int tam = temp.length;
         tam = tam + 2;
-        int tamBin = log_base2(tam);
+        int tamBin = f.log_base2(tam);
         alfEnt = new String[tam];
         alfEnt[0] = "%";
-        alfSai.add("a" + conv_dec_bin(0,tamBin));
-        alfEnt[1] = "$";
-        alfSai.add("a" + conv_dec_bin(1,tamBin));
+        alfSai.add("a" + f.conv_dec_bin(0,tamBin));
+        alfEnt[1] = ".";
+        alfSai.add("a" + f.conv_dec_bin(1,tamBin));
         for(int i = 2; i < tam; i++){
-            alfSai.add("a" + conv_dec_bin(i,tamBin));
-            alfEnt[i] = temp[i-2];
+            if(!temp[i-2].equals("#")){
+                alfSai.add("a" + f.conv_dec_bin(i,tamBin));
+                alfEnt[i] = temp[i-2];
+            }
         }
+        alfEnt[tam - 1] = "#";
         v.setAlfabetoEntrada(alfEnt);
         v.setAlfabetoSaida(alfSai);
         impAlfabeto(alfEnt, alfSai, v);
@@ -72,32 +76,33 @@ public class Passo1 {
         String ent[] = v.getAlfabetoEntrada();
         ArrayList sai = v.getAlfabetoSaida();
         for(int i = 0; i < ent.length; i++){
-            temp += ent[i] + "          -->        " + sai.get(i) + "\n";
+            if(!ent[i].equals("#"))      temp += ent[i] + "          -->        " + sai.get(i) + "\n";
         }
+        temp += "#          -->         \n";
         temp += "\n";
         v.setTxtTransiçõoes(temp);
     }
     
-    public void GerEstados(Var v){
+    public void GetEstados(Var v){
         String[] estEnt = null;
-        ArrayList estSai = new ArrayList();
+        //ArrayList estSai = new ArrayList();
         String[] linhas =v.getLinhas();
         String texto = linhas[1];
         int ini = texto.indexOf('{');
         int fin = texto.indexOf('}');
-        System.out.println(texto);
+        //System.out.println(texto);
         texto = texto.substring(ini+1, fin);
         String[] temp = texto.split(";");
         int tam = temp.length;
-        int tamBin = log_base2(tam);
+        //int tamBin = log_base2(tam);
         estEnt = new String[tam];
         for(int i = 0; i < tam; i++){
-            estSai.add("a" + conv_dec_bin(i,tamBin));
+            //estSai.add("q" + conv_dec_bin(i,tamBin));
             estEnt[i] = temp[i];
         }
         v.setEstadosEntrada(estEnt);
-        v.setEstadosSaida(estSai);
-        impEstados(estEnt, estSai, v);
+        //v.setEstadosSaida(estSai);
+        //impEstados(estEnt, estSai, v);
     }
     
     private void impEstados(String estEnt[],ArrayList estSai, Var v){
@@ -110,32 +115,6 @@ public class Passo1 {
         }
         temp += "\n";
         v.setTxtTransiçõoes(temp);
-    }
-    
-    //Funções auxiliares
-    
-    //Função que recebe um numero e retorna seu logaritmo na base 2
-    private int log_base2(int x){
-        float r_float = (float) (Math.log(x) / Math.log(2));
-        int r_int = (int) r_float;
-        if((r_float - r_int) != 0) r_int++;
-        return(r_int); 
-    }
-    
-    //Conversor de decimal para binario
-    private String conv_dec_bin(int num, int tam){
-        String bin = "";
-	while(num > 0){
-	
-		if(num % 2 == 0)    bin = "0" + bin;
-		else                bin = "1" + bin;
-			
-		num /= 2;
-	}
-        while(bin.length() < tam){
-            bin = "0" + bin;
-        }
-        return bin;
     }
 
 }
