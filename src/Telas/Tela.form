@@ -211,6 +211,9 @@
                   <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BtnSalvarMouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">

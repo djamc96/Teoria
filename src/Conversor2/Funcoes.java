@@ -94,6 +94,7 @@ public class Funcoes {
                     temp.getEscrita()   + " | " +
                     temp.getMovimento() + "\n";
         }
+        txt += "\n";
         v.setTxtTransiçõoes(txt);
     }
 }

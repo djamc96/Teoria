@@ -69,8 +69,9 @@ public class Passo4 {
         maqE.clear();
         maqE.addAll(maqETemp);
         maqETemp.clear();
-        
         f.impM(maqE,v);
+        txt = v.getTxtTransiçõoes();
+        
         txt += "\n2 simplicação\n";
         v.setTxtTransiçõoes(txt);
         maqETemp.clear();
@@ -94,6 +95,7 @@ public class Passo4 {
         f.impM(maqETemp,v);
         maqE.clear();
         maqE.addAll(maqETemp);
+        txt = v.getTxtTransiçõoes();
         
         txt += "\n3 simplicação\n";
         v.setTxtTransiçõoes(txt);

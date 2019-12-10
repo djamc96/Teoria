@@ -40,7 +40,7 @@ public class Passo3 {
                 }
             }
         }
-        txt += "Transições geradas apartir das matrizes\n";
+        txt += "\nTransições geradas apartir das matrizes\n";
         v.setTxtTransiçõoes(txt);
         f.impM(maqE, v);
         v.setMaqE(maqE);
@@ -54,7 +54,7 @@ public class Passo3 {
         int      [] contProxEst  = new int[estEnt.length];
         String txt = v.getTxtTransiçõoes();
         
-        txt += "Contagem de aparições nos estados\nEstado Atual            Proximo Estado\n";
+        txt += "\nContagem de aparições nos estados\n\nEstado Atual            Proximo Estado\n";
         for(int i = 0; i < matLei[0].length; i++){
             contEstAtual[i] = contProxEst[i] = 0;
         }
@@ -88,11 +88,12 @@ public class Passo3 {
             if(contEstAtual[i] == 0)                        estFinal.add(i);
         }
         
-        txt += "Estado Inicial\n" + estEnt[estInicial] + "\n";
-        txt += "Estados Finais\n";
+        txt += "\nEstado Inicial\n" + estEnt[estInicial] + "\n";
+        txt += "\nEstados Finais\n";
         for(int i = 0; i < estFinal.size(); i++){
-            txt += estEnt[(int) estFinal.get(i)] + "\n";
+            if(!estEnt[(int) estFinal.get(i)].equals("tmp"))  txt += estEnt[(int) estFinal.get(i)] + "\n";
         }
+        txt += "\n";
         v.setTxtTransiçõoes(txt);
         v.setEstInicial(estInicial);
         v.setEstFinal(estFinal);

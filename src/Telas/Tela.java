@@ -5,13 +5,16 @@
  */
 package Telas;
 
-import Conversor.Conversor;
-import Conversor.Variaveis;
 import Conversor2.Passo1;
 import Conversor2.Var;
-import Parser.Parser;
+import ManipulandoTXT.GerarTXT;
+import ManipulandoTXT.Parser;
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -113,6 +116,11 @@ public class Tela extends javax.swing.JFrame {
         );
 
         BtnSalvar.setBackground(java.awt.Color.blue);
+        BtnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnSalvarMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         jLabel4.setForeground(java.awt.Color.white);
@@ -371,10 +379,6 @@ public class Tela extends javax.swing.JFrame {
         CardLayout card = (CardLayout) Base.getLayout();
         card.show(Base,"Resultados");
         Passo1 p1 = new Passo1(v);
-        //conv.DivLinhas(var);
-        //conv.GerAlfabeto(var);
-        //conv.GerEstados(var);
-        //conv.transicoes(var);
         this.TxtTransicoes.setText(v.getTxtTransiçõoes());
         this.TxtEntrada.setText(v.getTxtArquivo());
         this.TxtSaida.setText(v.getTxtSaida());
@@ -401,6 +405,17 @@ public class Tela extends javax.swing.JFrame {
     private void TxtCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtCaminhoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtCaminhoActionPerformed
+
+    private void BtnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSalvarMouseClicked
+        String nome =   JOptionPane.showInputDialog("Nome dos arquivos de saida\nEx.: saida\nsaida.Transições   saida.Resultado");
+        GerarTXT gerar = new GerarTXT();
+        try {
+            gerar.salvar(v.getTxtTransiçõoes(), nome + ".Transições");
+            gerar.salvar(v.getTxtSaida(), nome + ".Resultado");
+        } catch (IOException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BtnSalvarMouseClicked
 
     /**
      * @param args the command line arguments

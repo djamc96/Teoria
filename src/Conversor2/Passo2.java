@@ -63,11 +63,11 @@ public class Passo2 {
             linha++;
         }
         
-        txt += "Matriz de Leitura\n";
+        txt += "Matriz de Leitura\n\n";
         v.setTxtTransiçõoes(txt);
         f.impMatriz(matLei, v);
         txt = v.getTxtTransiçõoes();
-        txt += "Matriz de Escrita\n";
+        txt += "\nMatriz de Escrita\n\n";
         v.setTxtTransiçõoes(txt);
         f.impMatriz(matEsc, v);
         
