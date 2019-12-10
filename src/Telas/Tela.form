@@ -383,7 +383,6 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="TxtCaminho">
               <Properties>
-                <Property name="text" type="java.lang.String" value="/home/casa/Documentos/git/Teoria/teste.txt"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>

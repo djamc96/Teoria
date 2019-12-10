@@ -1,0 +1,174 @@
+Matriz de Leitura
+
+ |  ; |  |  |  |  |  |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  ; |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  ; |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  ; |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  ; |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  |  ; |  |  |  | 
+ |  |  |  |  |  |  | a; |  |  |  | #; | b;c; |  | 
+ |  | a; |  |  |  |  |  | b; |  |  |  | c;#; |  | 
+ |  |  | b; |  |  |  |  |  | c; |  |  | a;#; |  | 
+ |  |  |  | c; | #; |  |  |  |  |  |  | a;b; |  | 
+ |  |  |  |  |  |  | a; |  |  |  | #; | b;c; |  | 
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+
+Matriz de Escrita
+
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | a | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | b | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | c | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | # | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+% | % | % | % | % | % | % | % | % | % | % | % | % | % | 
+
+Transições geradas apartir das matrizes
+inicio |   | e1 | % |  
+e1 |   | l1 | % |  
+e2 |   | l2 | a |  
+e3 |   | l3 | b |  
+e4 |   | l4 | c |  
+e5 |   | l5 | # |  
+l1 | a | l2 | % |  
+l1 | # | aceita | % |  
+l1 | b | rejeita | % |  
+l1 | c | rejeita | % |  
+l2 | a | e2 | % |  
+l2 | b | l3 | % |  
+l2 | c | rejeita | % |  
+l2 | # | rejeita | % |  
+l3 | b | e3 | % |  
+l3 | c | l4 | % |  
+l3 | a | rejeita | % |  
+l3 | # | rejeita | % |  
+l4 | c | e4 | % |  
+l4 | # | e5 | % |  
+l4 | a | rejeita | % |  
+l4 | b | rejeita | % |  
+l5 | a | l2 | % |  
+l5 | # | aceita | % |  
+l5 | b | rejeita | % |  
+l5 | c | rejeita | % |  
+
+
+Contagem de aparições nos estados
+
+Estado Atual            Proximo Estado
+inicio = 1      inicio = 0
+e1 = 1      e1 = 1
+e2 = 1      e2 = 1
+e3 = 1      e3 = 1
+e4 = 1      e4 = 1
+e5 = 1      e5 = 1
+l1 = 3      l1 = 1
+l2 = 3      l2 = 3
+l3 = 3      l3 = 2
+l4 = 3      l4 = 2
+l5 = 3      l5 = 1
+aceita = 0      aceita = 2
+rejeita = 0      rejeita = 5
+tmp = 0      tmp = 0
+
+Estado Inicial
+inicio
+
+Estados Finais
+aceita
+rejeita
+
+
+1 simplicação
+inicio | % | l1 | % |  
+e2 | % | l2 | a |  
+e3 | % | l3 | b |  
+e4 | % | l4 | c |  
+e5 | % | l5 | # |  
+l1 | a | l2 | % |  
+l1 | # | aceita | % |  
+l1 | b | rejeita | % |  
+l1 | c | rejeita | % |  
+l2 | a | l2 | a |  
+l2 | b | l3 | % |  
+l2 | c | rejeita | % |  
+l2 | # | rejeita | % |  
+l3 | b | l3 | b |  
+l3 | c | l4 | % |  
+l3 | a | rejeita | % |  
+l3 | # | rejeita | % |  
+l4 | c | l4 | c |  
+l4 | # | l5 | # |  
+l4 | a | rejeita | % |  
+l4 | b | rejeita | % |  
+l5 | a | l2 | % |  
+l5 | # | aceita | % |  
+l5 | b | rejeita | % |  
+l5 | c | rejeita | % |  
+
+
+2 simplicação
+inicio | % | l1 | . | d
+e2 | % | l2 | a | d
+e3 | % | l3 | b | d
+e4 | % | l4 | c | d
+e5 | % | l5 | # | d
+l1 | a | l2 | . | d
+l1 | # | aceita | # | f
+l1 | b | rejeita | b | f
+l1 | c | rejeita | c | f
+l2 | a | l2 | a | d
+l2 | b | l3 | . | d
+l2 | c | rejeita | c | f
+l2 | # | rejeita | # | f
+l3 | b | l3 | b | d
+l3 | c | l4 | . | d
+l3 | a | rejeita | a | f
+l3 | # | rejeita | # | f
+l4 | c | l4 | c | d
+l4 | # | l5 | # | d
+l4 | a | rejeita | a | f
+l4 | b | rejeita | b | f
+l5 | a | l2 | . | d
+l5 | # | aceita | # | f
+l5 | b | rejeita | b | f
+l5 | c | rejeita | c | f
+
+
+3 simplicação
+inicio | % | l1 | . | d
+l1 | a | l2 | . | d
+l1 | % | aceita | % | f
+l1 | b | rejeita | b | f
+l1 | c | rejeita | c | f
+l2 | a | l2 | a | d
+l2 | b | l3 | . | d
+l2 | c | rejeita | c | f
+l2 | % | rejeita | % | f
+l3 | b | l3 | b | d
+l3 | c | l4 | . | d
+l3 | a | rejeita | a | f
+l3 | % | rejeita | % | f
+l4 | c | l4 | c | d
+l4 | % | tmp | % | e
+tmp | % | tmp | % | e
+tmp | . | tmp | . | e
+tmp | a | tmp | a | e
+tmp | b | tmp | b | e
+tmp | c | tmp | c | e
+tmp | % | l5 | % | d
+l4 | a | rejeita | a | f
+l4 | b | rejeita | b | f
+l5 | a | l2 | . | d
+l5 | % | aceita | % | f
+l5 | b | rejeita | b | f
+l5 | c | rejeita | c | f
+

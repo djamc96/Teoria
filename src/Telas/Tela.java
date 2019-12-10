@@ -10,6 +10,7 @@ import Conversor2.Var;
 import ManipulandoTXT.GerarTXT;
 import ManipulandoTXT.Parser;
 import java.awt.CardLayout;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -244,7 +245,6 @@ public class Tela extends javax.swing.JFrame {
         Base.add(Resultado, "Resultados");
         Resultado.getAccessibleContext().setAccessibleDescription("");
 
-        TxtCaminho.setText("/home/casa/Documentos/git/Teoria/teste.txt");
         TxtCaminho.setEnabled(false);
         TxtCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,9 +409,26 @@ public class Tela extends javax.swing.JFrame {
     private void BtnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnSalvarMouseClicked
         String nome =   JOptionPane.showInputDialog("Nome dos arquivos de saida\nEx.: saida\nsaida.Transições   saida.Resultado");
         GerarTXT gerar = new GerarTXT();
+        JFileChooser fc2 = new JFileChooser();
+
+        fc2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int res = fc2.showOpenDialog(null);
+
+        File caminho = null;
+
+        if(res == JFileChooser.APPROVE_OPTION){
+            caminho = fc2.getSelectedFile();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Operação cancelada."); 
+
+        }  
         try {
-            gerar.salvar(v.getTxtTransiçõoes(), nome + ".Transições");
-            gerar.salvar(v.getTxtSaida(), nome + ".Resultado");
+            System.out.println(caminho.getPath() + "/" + nome + ".Transições.txt");
+            gerar.salvar(v.getTxtTransiçõoes(), caminho.getPath() + "/" + nome + ".Transições.txt");
+            gerar.salvar(v.getTxtSaida(), caminho.getPath() + "/" + nome + ".Resultado.txt");
+            JOptionPane.showMessageDialog(null, "Aruivo salvo com sucesso");
         } catch (IOException ex) {
             Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
         }
